@@ -298,45 +298,45 @@ template {
 }
 :root {
   --color-gray-100: #fff;
-  --color-gray-150: #f9f9f9;
-  --color-gray-200: #f5f6f7;
-  --color-gray-250: #efefef;
-  --color-gray-260: #e5e7ea;
-  --color-gray-300: #dadada;
-  --color-gray-400: #ccd0d5;
-  --color-gray-500: #bec3c9;
-  --color-gray-550: #adadad;
-  --color-gray-600: #8d949e;
-  --color-gray-650: #757474;
-  --color-gray-700: #606770;
-  --color-gray-800: #444950;
-  --color-gray-850: #303846;
-  --color-gray-900: #2c323c;
-  --color-gray-950: #1c1e21;
+  --color-gray-150: #edeff8;
+  --color-gray-200: #dee1ee;
+  --color-gray-250: #cdd5e0;
+  --color-gray-260: #b5c3d5;
+  --color-gray-300: #a7afc4;
+  --color-gray-400: #9dabc4;
+  --color-gray-500: #9db2d3;
+  --color-gray-550: #8999bb;
+  --color-gray-600: #7e96bc;
+  --color-gray-650: #6587b2;
+  --color-gray-700: #5c83ba;
+  --color-gray-800: #4d72a7;
+  --color-gray-850: #3663a2;
+  --color-gray-900: #2a5697;
+  --color-gray-950: #1d4a93;
   --color-font: var(--color-gray-900);
   --color-card: var(--color-gray-100);
-  --color-blue-200: #ebeef5;
+  --color-blue-200: #edeff8;
 }
 html.nightmode {
-  --color-gray-100: #1c1e21;
-  --color-gray-150: #2c323c;
-  --color-gray-200: #303846;
-  --color-gray-250: #444950;
-  --color-gray-260: #555b64;
-  --color-gray-300: #606770;
-  --color-gray-400: #757474;
-  --color-gray-500: #8d949e;
-  --color-gray-550: #959595;
-  --color-gray-600: #bec3c9;
-  --color-gray-650: #ccd0d5;
-  --color-gray-700: #dadada;
-  --color-gray-800: #eaecef;
-  --color-gray-850: #f5f6f7;
-  --color-gray-900: #f9f9f9;
+  --color-gray-100: #1d4a93;
+  --color-gray-150: #2a5697;
+  --color-gray-200: #3663a2;
+  --color-gray-250: #4d72a7;
+  --color-gray-260: #5c83ba;
+  --color-gray-300: #6587b2;
+  --color-gray-400: #7e96bc;
+  --color-gray-500: #8999bb;
+  --color-gray-550: #9db2d3;
+  --color-gray-600: #9db2d3;
+  --color-gray-650: #a7afc4;
+  --color-gray-700: #b5c3d5;
+  --color-gray-800: #cdd5e0;
+  --color-gray-850: #dee1ee;
+  --color-gray-900: #edeff8;
   --color-gray-950: #fff;
   --color-font: var(--color-gray-600);
   --color-card: var(--color-gray-150);
-  --color-blue-200: #444950;
+  --color-blue-200: #4d72a7;
 }
 ::selection {
   color: #fff;
@@ -2503,4 +2503,26 @@ kbd {
     padding: 0.5rem 1rem;
     width: 100%;
   }
+}
+.header-inner {
+  background: url("../../images/bg2.jpg") no-repeat top;
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+.header-nav--sticky {
+  background-color: #305286;
+}
+.header-nav-menu {
+  background-color: none;
+}
+.header-nav-menu-item__link:hover {
+  background-color: #346eae !important;
+}
+.mode-track {
+  background-color: rgba(116,159,210,0.7);
+}
+.footer-inner {
+  background-color: #305286 !important;
 }
