@@ -2515,10 +2515,14 @@ kbd {
   background-color: #305286;
 }
 .header-nav-menu {
-  background-color: none;
+  background-color: rgba(255,255,255,0);
+}
+.header-nav-menu-item {
+  background-color: none !important;
 }
 .header-nav-menu-item__link:hover {
-  background-color: #346eae !important;
+  color: #346eae !important;
+  background-color: rgba(255,255,255,0) !important;
 }
 .mode-track {
   background-color: rgba(116,159,210,0.7);
