@@ -2,16 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lovepink527.github.io/categories/index.html</loc>
+    <loc>https://lovepink527.github.io/about/index.html</loc>
     
-    <lastmod>2022-01-11</lastmod>
+    <lastmod>2022-01-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://lovepink527.github.io/about/index.html</loc>
+    <loc>https://lovepink527.github.io/2022/01/07/hello-world/</loc>
+    
+    <lastmod>2022-01-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lovepink527.github.io/2022/01/10/vue%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2022-01-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://lovepink527.github.io/categories/index.html</loc>
     
     <lastmod>2022-01-11</lastmod>
     
@@ -28,28 +46,10 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://lovepink527.github.io/2022/01/10/vue%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE/</loc>
-    
-    <lastmod>2022-01-10</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://lovepink527.github.io/2022/01/07/hello-world/</loc>
-    
-    <lastmod>2022-01-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://lovepink527.github.io/</loc>
-    <lastmod>2022-01-11</lastmod>
+    <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -57,7 +57,7 @@
   
   <url>
     <loc>https://lovepink527.github.io/tags/vue/</loc>
-    <lastmod>2022-01-11</lastmod>
+    <lastmod>2022-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -66,7 +66,7 @@
   
   <url>
     <loc>https://lovepink527.github.io/categories/vue/</loc>
-    <lastmod>2022-01-11</lastmod>
+    <lastmod>2022-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
