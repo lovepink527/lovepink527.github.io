@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="别人的代码整理的浏览器api                     1. 浏览器提供的符合W3C标准的DOM操作API、浏览器差异、兼容性        web API：浏览器提供的一套操作浏览器功能和页面元素的API（BOM和DOM）。 DOM文档对象模型，是W3C组织推荐的处理可扩展标志语言的标准编程接口。 获取元素：getElementById  getElementByTagName">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器api">
+<meta property="og:url" content="https://lovepink527.github.io/2021/11/08/%E6%B5%8F%E8%A7%88%E5%99%A8api/index.html">
+<meta property="og:site_name" content="lovepink">
+<meta property="og:description" content="别人的代码整理的浏览器api                     1. 浏览器提供的符合W3C标准的DOM操作API、浏览器差异、兼容性        web API：浏览器提供的一套操作浏览器功能和页面元素的API（BOM和DOM）。 DOM文档对象模型，是W3C组织推荐的处理可扩展标志语言的标准编程接口。 获取元素：getElementById  getElementByTagName">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-08T11:18:01.000Z">
+<meta property="article:modified_time" content="2022-03-04T02:30:12.869Z">
+<meta property="article:author" content="姜慧慧">
+<meta property="article:tag" content="运行环境">
+<meta name="twitter:card" content="summary"><title>浏览器api | lovepink</title><link ref="canonical" href="https://lovepink527.github.io/2021/11/08/%E6%B5%8F%E8%A7%88%E5%99%A8api/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="lovepink" type="application/atom+xml">
+</head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-about"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">lovepink</div><div class="header-banner-info__subtitle">热爱可抵岁月漫长</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">浏览器api</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-11-08</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-03-04</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq892765518/article/details/96423648" >别人的代码整理的浏览器api</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="1-浏览器提供的符合W3C标准的DOM操作API、浏览器差异、兼容性"   >
+          <a href="#1-浏览器提供的符合W3C标准的DOM操作API、浏览器差异、兼容性" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-浏览器提供的符合W3C标准的DOM操作API、浏览器差异、兼容性" class="headerlink" title="1. 浏览器提供的符合W3C标准的DOM操作API、浏览器差异、兼容性"></a>1. 浏览器提供的符合W3C标准的DOM操作API、浏览器差异、兼容性</h4>
+      <ul>
+<li>web API：浏览器提供的一套操作浏览器功能和页面元素的API（BOM和DOM）。</li>
+<li>DOM文档对象模型，是W3C组织推荐的处理可扩展标志语言的标准编程接口。</li>
+<li>获取元素：getElementById  getElementByTagName  getElementByName  getElementByClassName  querySelector </li>
+<li>创建元素：write()  createElement() createAttribute() createCommment()</li>
+<li>修改元素：appendChild()  insertBefore()  removeChild()  replaceChild()<span id="more"></span></li>
+</ul>
+<p> <strong>DOM解析中浏览器的差异</strong></p>
+<ul>
+<li><p>一个重要的差异就是，处理空白和换行的方式。Internet Explorer 将不会把空的空白或换行作为文本节点，而其他浏览器会。</p>
+
+        <h4 id="2-浏览器提供的浏览器对象模型-BOM-提供的所有全局API、浏览器差异、兼容性"   >
+          <a href="#2-浏览器提供的浏览器对象模型-BOM-提供的所有全局API、浏览器差异、兼容性" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-浏览器提供的浏览器对象模型-BOM-提供的所有全局API、浏览器差异、兼容性" class="headerlink" title="2.浏览器提供的浏览器对象模型 (BOM)提供的所有全局API、浏览器差异、兼容性"></a>2.浏览器提供的浏览器对象模型 (BOM)提供的所有全局API、浏览器差异、兼容性</h4>
+      </li>
+<li><p>BOM是指浏览器对象模型，浏览器对象模型提供了独立于内容的、可以与浏览器窗口进行互动的对象结构。BOM由多个对象组成，其中代表浏览器窗口的Window对象是BOM的顶层对象，其他对象都是该对象的子对象。</p>
+</li>
+<li><p>我们在浏览器中的一些操作都可以使用BOM的方式进行编程处理，比如：刷新浏览器、后退、前进、在浏览器中输入URL等。</p>
+</li>
+<li><p>对话框：alert()  prompt()  confirm()</p>
+</li>
+<li><p>页面加载事件：onload、onunload</p>
+</li>
+<li><p>定时器：setTimeout()  cleatTimeout()  setInterval()  clearInterval()</p>
+</li>
+<li><p>location对象：location对象是window对象下的一个属性，可以获取或设置浏览器地址栏的URL</p>
+</li>
+<li><p>history对象：back()、forward()  go()</p>
+</li>
+<li><p>navigator对象：userAgent可以判断用户浏览器类型  platform可以判断浏览器所在的系统平台类型</p>
+</li>
+</ul>
+
+        <h4 id="3-大量DOM操作、海量数据的性能优化-合并操作、Diff、requestAnimationFrame等"   >
+          <a href="#3-大量DOM操作、海量数据的性能优化-合并操作、Diff、requestAnimationFrame等" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-大量DOM操作、海量数据的性能优化-合并操作、Diff、requestAnimationFrame等" class="headerlink" title="3.大量DOM操作、海量数据的性能优化(合并操作、Diff、requestAnimationFrame等)"></a>3.大量DOM操作、海量数据的性能优化(合并操作、Diff、requestAnimationFrame等)</h4>
+      <ul>
+<li><p>大量DOM操作解决方案：</p>
+</li>
+<li><p>减少DOM操作次数DocumentFragment，缩短循环时间使用分治思想分批次插入，采用requestAnimationFrame</p>
+</li>
+<li><p>window.requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行</p>
+</li>
+</ul>
+<p><span class="exturl"><a class="exturl__link"   href="https://link.csdn.net/?target=https://www.jianshu.com/p/55e67e8739f6" >虚拟dom、diff、合并操作</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="4-浏览器海量数据存储、操作性能优化"   >
+          <a href="#4-浏览器海量数据存储、操作性能优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-浏览器海量数据存储、操作性能优化" class="headerlink" title="4.浏览器海量数据存储、操作性能优化"></a>4.浏览器海量数据存储、操作性能优化</h4>
+      <p>一般是 localStorage 配合 IndexDB 使用<br><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/dujuncheng/p/6850246.html" >浏览器缓存</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="5-DOM事件流的具体实现机制、不同浏览器的差异、事件代理"   >
+          <a href="#5-DOM事件流的具体实现机制、不同浏览器的差异、事件代理" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-DOM事件流的具体实现机制、不同浏览器的差异、事件代理" class="headerlink" title="5.DOM事件流的具体实现机制、不同浏览器的差异、事件代理"></a>5.DOM事件流的具体实现机制、不同浏览器的差异、事件代理</h4>
+      <ul>
+<li>冒泡</li>
+<li>捕获<br>事件就是文档或浏览器窗口中发生的一些特定的交互瞬间，事件流描述的是从页面中接收顺序的顺序。<br>IE的事件流是事件冒泡流，而Netscape的事件流是事件捕获流。<br>[注意]IE9、Firefox、Chrome、Safari等现代浏览器都支持事件捕获，但是从window对象开始捕获。之前的从document开始。
+        <h4 id="6-前端发起网络请求的几种方式及其底层实现、可以手写原生ajax、fetch、可以熟练使用第三方库"   >
+          <a href="#6-前端发起网络请求的几种方式及其底层实现、可以手写原生ajax、fetch、可以熟练使用第三方库" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-前端发起网络请求的几种方式及其底层实现、可以手写原生ajax、fetch、可以熟练使用第三方库" class="headerlink" title="6.前端发起网络请求的几种方式及其底层实现、可以手写原生ajax、fetch、可以熟练使用第三方库"></a>6.前端发起网络请求的几种方式及其底层实现、可以手写原生ajax、fetch、可以熟练使用第三方库</h4>
+      1、link标签的href属性   2、script标签的src属性  3、img标签的src属性  4、ajax发送请求  5、表单提交发送请求<br>6、a标签的href发送请求  7、iframe的src属性发送请求   8、fetch –ajax的替代者  9、axios、request等众多开源库</li>
+</ul>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">&#x27;post&#x27;</span>, <span class="string">&#x27;www.xxx.com&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">//  接受返回值</span></span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status &gt;= <span class="number">200</span> &amp;&amp; xhr.status &lt; <span class="number">300</span> || xhr.status == <span class="number">304</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(xhr.responseText);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 处理请求参数</span></span><br><span class="line">postData = &#123;<span class="string">&quot;name1&quot;</span>:<span class="string">&quot;value1&quot;</span>,<span class="string">&quot;name2&quot;</span>:<span class="string">&quot;value2&quot;</span>&#125;;</span><br><span class="line">postData = (<span class="function"><span class="keyword">function</span>(<span class="params">valuse</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> value)&#123;</span><br><span class="line">        oStr += <span class="string">`<span class="subst">$&#123;key&#125;</span>=<span class="subst">$&#123;key[key]&#125;</span>&amp;`</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> oStr;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 设置请求头</span></span><br><span class="line">xhr.setRequestHeader(<span class="string">&quot;Content-type&quot;</span>,<span class="string">&quot;application/x-www-form-urlencoded&quot;</span>);</span><br><span class="line"><span class="comment">// 异常处理</span></span><br><span class="line">xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Network request failed&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 跨域携带cookie</span></span><br><span class="line">xhr.withCredentials = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// 发出请求</span></span><br><span class="line">xhr.send(postData);</span><br></pre></td></tr></table></div></figure>
+
+        <h4 id="7-浏览器的同源策略，如何避免同源策略，几种方式的异同点以及如何选型"   >
+          <a href="#7-浏览器的同源策略，如何避免同源策略，几种方式的异同点以及如何选型" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-浏览器的同源策略，如何避免同源策略，几种方式的异同点以及如何选型" class="headerlink" title="7.浏览器的同源策略，如何避免同源策略，几种方式的异同点以及如何选型"></a>7.浏览器的同源策略，如何避免同源策略，几种方式的异同点以及如何选型</h4>
+      <p>请求存在跨域问题，浏览器的同源策略研制了从同以源加载的文档或者脚本如何与另外一个源的资源进行交互，这是一个用于隔离潜在恶意文件的重要安全机制。通常不允许不同源间的读操作。</p>
+<p>跨域条件：协议，域名，端口，有一个不同就算跨域。</p>
+<p>实现跨域的方式：</p>
+<p>1.使用nginx反向代理实现跨域。</p>
+<p>2.CORS：</p>
+<p>跨域资源共享，服务端设置 Access-Control-Allow-Origin 就可以开启 CORS。 该属性表示哪些域名可以访问资源，如果设置通配符则表示所有网站都可以访问资源</p>
+<p>3.jsonp：</p>
+<p>优点是简单兼容性好，可用于解决主流浏览器的跨域数据访问的问题。缺点是仅支持 get 方法具有局限性,不安全可能会遭受 XSS 攻击。</p>
+<p>4.WebSocket</p>
+<p>5.postMessage跨域：</p>
+<p>适用于同浏览器多窗口间跨域通信、iframe间跨域通信</p>
+<p>6.Node中间件处理</p>
+
+        <h4 id="8-浏览器提供的几种存储机制、优缺点、开发中正确的选择"   >
+          <a href="#8-浏览器提供的几种存储机制、优缺点、开发中正确的选择" class="heading-link"><i class="fas fa-link"></i></a><a href="#8-浏览器提供的几种存储机制、优缺点、开发中正确的选择" class="headerlink" title="8.浏览器提供的几种存储机制、优缺点、开发中正确的选择"></a>8.浏览器提供的几种存储机制、优缺点、开发中正确的选择</h4>
+      
+        <h5 id="cookie："   >
+          <a href="#cookie：" class="heading-link"><i class="fas fa-link"></i></a><a href="#cookie：" class="headerlink" title="cookie："></a>cookie：</h5>
+      <ul>
+<li>存储在用户本地终端上的数据。cookie默认情况下的有效期是很短暂的，一旦用户关闭浏览器，cookie保存的数据就会丢失</li>
+<li>每个cookie保存的数据不能超过4KB。</li>
+<li>cookie的优点：能用于和服务器端通信；当cookie快要过期时，可以重新设置而不是删除。</li>
+<li>cookie的缺点：它会随着http头信息一起发送，增加了网络流量（文档传输的负载）；它只能储存少量的数据；它只能储存字符串；有潜在的安全问题。
+        <h5 id="localStorage"   >
+          <a href="#localStorage" class="heading-link"><i class="fas fa-link"></i></a><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h5>
+      </li>
+<li>HTML5中新加入了一个localStorage特性，解决了cookie存储空间不足的问题，localStorage中一般浏览器支持的是5M大小。</li>
+<li>localStorage的优点：localStorage会可以将第一次请求的数据直接存储到本地；存储的数据没有时间限制。</li>
+<li>localStorage的缺点：</li>
+<li>1.在IE8以上的IE版本才支持localStorage这个属性；</li>
+<li>2.目前所有的浏览器中都会把localStorage的值类型限定为string类型，这个在对我们日常比较常见的JSON对象类型需要一些转换 </li>
+<li>3.localStorage在浏览器的隐私模式下面是不可读取的；</li>
+<li>4.localStorage本质上是对字符串的读取，如果存储内容多的话会消耗内存空间，会导致页面变卡；</li>
+<li>5.localStorage不能被爬虫抓取到。
+        <h5 id="SessionStorage"   >
+          <a href="#SessionStorage" class="heading-link"><i class="fas fa-link"></i></a><a href="#SessionStorage" class="headerlink" title="SessionStorage"></a>SessionStorage</h5>
+      </li>
+<li>sessionStorage与localStorage的唯一一点区别就是localStorage属于永久性存储，而sessionStorage属于当会话结束的时候，sessionStorage中的键值对就会被清空。</li>
+</ul>
+
+        <h5 id="UserData、GlobalStorage、Google-Gear"   >
+          <a href="#UserData、GlobalStorage、Google-Gear" class="heading-link"><i class="fas fa-link"></i></a><a href="#UserData、GlobalStorage、Google-Gear" class="headerlink" title="UserData、GlobalStorage、Google Gear"></a>UserData、GlobalStorage、Google Gear</h5>
+      <ul>
+<li>这三种的使用都有一定的局限性，例如userData是IE浏览器专属，它的容量可以达到640K，这种方案可靠，不需要安装额外插件，只不过它仅在IE下有效~</li>
+<li>globalStorage适用于Firefox 2+的浏览器，类似于IE的userData</li>
+<li>google gear是谷歌开发出的一种本地存储技术，需要安装Gear组件。</li>
+<li>Flash ShareObject</li>
+</ul>
+<p>这种方式能能解决上面提到的cookie存储的两个弊端，而且能够跨浏览器，应该说是目前最好的本地存储方案。不过，需要在页面中插入一个Flash，当浏览器没有安装Flash控件时就不能用了。</p>
+
+        <h5 id="indexDB"   >
+          <a href="#indexDB" class="heading-link"><i class="fas fa-link"></i></a><a href="#indexDB" class="headerlink" title="indexDB"></a>indexDB</h5>
+      <p>进行大数据的存储，通常50m, 目前应用场景都不多，放太多东西在本地会造成数据的泄露；</p>
+
+        <h5 id="token"   >
+          <a href="#token" class="heading-link"><i class="fas fa-link"></i></a><a href="#token" class="headerlink" title="token"></a>token</h5>
+      <ul>
+<li>比如说， 小F已经登录了系统， 我给他发一个令牌(token)， 里边包含了小F的 user id， 下一次小F 再次通过Http 请求访问我的时候， 把这个token 通过Http header 带过来不就可以了。</li>
+<li>不过这和session id没有本质区别啊， 任何人都可以可以伪造， 所以我得想点儿办法， 让别人伪造不了。</li>
+<li>那就对数据做一个签名吧， 比如说我用HMAC-SHA256 算法，加上一个只有我才知道的密钥， 对数据做一个签名， 把这个签名和数据一起作为token ， 由于密钥别人不知道， 就无法伪造token了。</li>
+<li>这个token 我不保存， 当小F把这个token 给我发过来的时候，我再用同样的HMAC-SHA256 算法和同样的密钥，对数据再计算一次签名， 和token 中的签名做个比较， 如果相同， 我就知道小F已经登录过了，并且可以直接取到小F的user id , 如果不相同， 数据部分肯定被人篡改过， 我就告诉发送者：对不起，没有认证。</li>
+<li>Token 中的数据是明文保存的（虽然我会用Base64做下编码， 但那不是加密）， 还是可以被别人看到的， 所以我不能在其中保存像密码这样的敏感信息。</li>
+<li>当然， 如果一个人的token 被别人偷走了， 那我也没办法， 我也会认为小偷就是合法用户， 这其实和一个人的session id 被别人偷走是一样的。</li>
+<li>这样一来， 我就不保存session id 了， 我只是生成token , 然后验证token ， 我用我的CPU计算时间获取了我的session 存储空间 ！</li>
+<li>解除了session id这个负担， 可以说是无事一身轻， 我的机器集群现在可以轻松地做水平扩展， 用户访问量增大， 直接加机器就行。这种无状态的感觉实在是太好了！
+        <h4 id="session-的会话方式可以分为两种cookie和token来实现"   >
+          <a href="#session-的会话方式可以分为两种cookie和token来实现" class="heading-link"><i class="fas fa-link"></i></a><a href="#session-的会话方式可以分为两种cookie和token来实现" class="headerlink" title="session 的会话方式可以分为两种cookie和token来实现"></a>session 的会话方式可以分为两种cookie和token来实现</h4>
+      </li>
+<li>cookie 需要客户端与服务端都要存储</li>
+<li>token 只需要客户端存储
+        <h4 id="9-浏览器跨标签通信"   >
+          <a href="#9-浏览器跨标签通信" class="heading-link"><i class="fas fa-link"></i></a><a href="#9-浏览器跨标签通信" class="headerlink" title="9.浏览器跨标签通信"></a>9.浏览器跨标签通信</h4>
+      方法一：使用localStorage</li>
+</ul>
+<p>方法二：使用cookie + serInterval</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://lovepink527.github.io">姜慧慧</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://lovepink527.github.io/2021/11/08/%E6%B5%8F%E8%A7%88%E5%99%A8api/">https://lovepink527.github.io/2021/11/08/%E6%B5%8F%E8%A7%88%E5%99%A8api/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://lovepink527.github.io/tags/%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/">运行环境</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2021/11/09/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">版本控制</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2021/11/08/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-http/"><span class="paginator-prev__text">网络协议-http</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E4%BE%9B%E7%9A%84%E7%AC%A6%E5%90%88W3C%E6%A0%87%E5%87%86%E7%9A%84DOM%E6%93%8D%E4%BD%9CAPI%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%AE%E5%BC%82%E3%80%81%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">
+          1. 浏览器提供的符合W3C标准的DOM操作API、浏览器差异、兼容性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E4%BE%9B%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B-BOM-%E6%8F%90%E4%BE%9B%E7%9A%84%E6%89%80%E6%9C%89%E5%85%A8%E5%B1%80API%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%AE%E5%BC%82%E3%80%81%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">2.</span> <span class="toc-text">
+          2.浏览器提供的浏览器对象模型 (BOM)提供的所有全局API、浏览器差异、兼容性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%A4%A7%E9%87%8FDOM%E6%93%8D%E4%BD%9C%E3%80%81%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96-%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C%E3%80%81Diff%E3%80%81requestAnimationFrame%E7%AD%89"><span class="toc-number">3.</span> <span class="toc-text">
+          3.大量DOM操作、海量数据的性能优化(合并操作、Diff、requestAnimationFrame等)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B5%B7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E3%80%81%E6%93%8D%E4%BD%9C%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">
+          4.浏览器海量数据存储、操作性能优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-DOM%E4%BA%8B%E4%BB%B6%E6%B5%81%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0%E6%9C%BA%E5%88%B6%E3%80%81%E4%B8%8D%E5%90%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%B7%AE%E5%BC%82%E3%80%81%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">
+          5.DOM事件流的具体实现机制、不同浏览器的差异、事件代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%89%8D%E7%AB%AF%E5%8F%91%E8%B5%B7%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E3%80%81%E5%8F%AF%E4%BB%A5%E6%89%8B%E5%86%99%E5%8E%9F%E7%94%9Fajax%E3%80%81fetch%E3%80%81%E5%8F%AF%E4%BB%A5%E7%86%9F%E7%BB%83%E4%BD%BF%E7%94%A8%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93"><span class="toc-number">6.</span> <span class="toc-text">
+          6.前端发起网络请求的几种方式及其底层实现、可以手写原生ajax、fetch、可以熟练使用第三方库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%EF%BC%8C%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%EF%BC%8C%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E9%80%89%E5%9E%8B"><span class="toc-number">7.</span> <span class="toc-text">
+          7.浏览器的同源策略，如何避免同源策略，几种方式的异同点以及如何选型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%90%E4%BE%9B%E7%9A%84%E5%87%A0%E7%A7%8D%E5%AD%98%E5%82%A8%E6%9C%BA%E5%88%B6%E3%80%81%E4%BC%98%E7%BC%BA%E7%82%B9%E3%80%81%E5%BC%80%E5%8F%91%E4%B8%AD%E6%AD%A3%E7%A1%AE%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">8.</span> <span class="toc-text">
+          8.浏览器提供的几种存储机制、优缺点、开发中正确的选择</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#cookie%EF%BC%9A"><span class="toc-number">8.1.</span> <span class="toc-text">
+          cookie：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#localStorage"><span class="toc-number">8.2.</span> <span class="toc-text">
+          localStorage</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#SessionStorage"><span class="toc-number">8.3.</span> <span class="toc-text">
+          SessionStorage</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#UserData%E3%80%81GlobalStorage%E3%80%81Google-Gear"><span class="toc-number">8.4.</span> <span class="toc-text">
+          UserData、GlobalStorage、Google Gear</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#indexDB"><span class="toc-number">8.5.</span> <span class="toc-text">
+          indexDB</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#token"><span class="toc-number">8.6.</span> <span class="toc-text">
+          token</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#session-%E7%9A%84%E4%BC%9A%E8%AF%9D%E6%96%B9%E5%BC%8F%E5%8F%AF%E4%BB%A5%E5%88%86%E4%B8%BA%E4%B8%A4%E7%A7%8Dcookie%E5%92%8Ctoken%E6%9D%A5%E5%AE%9E%E7%8E%B0"><span class="toc-number">9.</span> <span class="toc-text">
+          session 的会话方式可以分为两种cookie和token来实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B7%A8%E6%A0%87%E7%AD%BE%E9%80%9A%E4%BF%A1"><span class="toc-number">10.</span> <span class="toc-text">
+          9.浏览器跨标签通信</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/avatar1.png" alt="avatar"></div><p class="sidebar-ov-author__text">前端知识学习笔记</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">47</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>姜慧慧</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="1.HTTP请求报文和响应报文的具体组成，能理解常见请求头的含义，有几种请求方式，区别是什么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络协议-http">
+<meta property="og:url" content="https://lovepink527.github.io/2021/11/08/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-http/index.html">
+<meta property="og:site_name" content="lovepink">
+<meta property="og:description" content="1.HTTP请求报文和响应报文的具体组成，能理解常见请求头的含义，有几种请求方式，区别是什么">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ed4a02c8e0c144ff9ef8e581e4108c89.jpg?x-oss-process=image/wa!%5B%E8%AF%B7%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0%5D(https://img-blog.csdnimg.cn/110c610e9212483ea4d619fda876af5c.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5aec5oWn5oWn,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2021-11-08T09:31:10.000Z">
+<meta property="article:modified_time" content="2022-03-04T02:28:36.282Z">
+<meta property="article:author" content="姜慧慧">
+<meta property="article:tag" content="计算机基础">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/ed4a02c8e0c144ff9ef8e581e4108c89.jpg?x-oss-process=image/wa!%5B%E8%AF%B7%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0%5D(https://img-blog.csdnimg.cn/110c610e9212483ea4d619fda876af5c.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5aec5oWn5oWn,size_20,color_FFFFFF,t_70,g_se,x_16"><title>网络协议-http | lovepink</title><link ref="canonical" href="https://lovepink527.github.io/2021/11/08/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-http/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="lovepink" type="application/atom+xml">
+</head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-about"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">lovepink</div><div class="header-banner-info__subtitle">热爱可抵岁月漫长</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">网络协议-http</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-11-08</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-03-04</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h4 id="1-HTTP请求报文和响应报文的具体组成，能理解常见请求头的含义，有几种请求方式，区别是什么"   >
+          <a href="#1-HTTP请求报文和响应报文的具体组成，能理解常见请求头的含义，有几种请求方式，区别是什么" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-HTTP请求报文和响应报文的具体组成，能理解常见请求头的含义，有几种请求方式，区别是什么" class="headerlink" title="1.HTTP请求报文和响应报文的具体组成，能理解常见请求头的含义，有几种请求方式，区别是什么"></a>1.HTTP请求报文和响应报文的具体组成，能理解常见请求头的含义，有几种请求方式，区别是什么</h4>
+      <p><img   src="https://img-blog.csdnimg.cn/ed4a02c8e0c144ff9ef8e581e4108c89.jpg?x-oss-process=image/wa!%5B%E8%AF%B7%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0%5D(https://img-blog.csdnimg.cn/110c610e9212483ea4d619fda876af5c.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5aec5oWn5oWn,size_20,color_FFFFFF,t_70,g_se,x_16" style=""  alt="在这里插入图片描述"></p>
+<span id="more"></span>
+
+        <h6 id="具体组成"   >
+          <a href="#具体组成" class="heading-link"><i class="fas fa-link"></i></a><a href="#具体组成" class="headerlink" title="具体组成"></a>具体组成</h6>
+      <ul>
+<li><p>请求行：包括用于请求的方法，请求url和http版本</p>
+</li>
+<li><p>状态行：包含表明响应结果的状态码，原因短语和http版本</p>
+</li>
+<li><p>首部字段：包含表示请求和响应的各种条件和属性的各类首部（通用首部、请求首部、响应首部、实体首部）</p>
+</li>
+<li><p>通用首部字段：请求报文和响应报文两方都会使用的首部</p>
+</li>
+<li><p>请求首部字段： 从客户端向服务端发送请求报文时使用的首部。补充啦请求的附加内容，客户端信息、响应内容相关优先级等信息。</p>
+</li>
+<li><p>响应首部字段： 从服务端向客户端返回响应报文时使用的首部。补充啦响应的附加内容、也会要求客户端附加额外的内容信息。</p>
+</li>
+<li><p>实体首部字段： 针对请求报文和响应报文的实体部分使用的首部。补充啦资源内容的更新时间等与实体有关的信息。</p>
+
+        <h6 id="常见请求头"   >
+          <a href="#常见请求头" class="heading-link"><i class="fas fa-link"></i></a><a href="#常见请求头" class="headerlink" title="常见请求头"></a>常见请求头</h6>
+      </li>
+<li><p>Accept:text/html,image/*[告诉服务器，浏览器可以接受文本，网页图片]</p>
+</li>
+<li><p>Accept-Charaset:ISO-8859-1 [接受字符编码：iso-8859-1]</p>
+</li>
+<li><p>Accept-Encoding:gzip,compress[可以接受 gzip,compress压缩后数据]</p>
+</li>
+<li><p>Accept-Language:zh-cn[浏览器支持的语言]</p>
+</li>
+<li><p>Host:localhost:8080[浏览器要找的主机]</p>
+</li>
+<li><p>IF-MODIFIED-Since:Tue,11Jul 2000 18:23:51[告诉服务器这缓存中有这个文件,该文件的时间是…]</p>
+</li>
+<li><p>Referer:<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://localhost:8080/test/abc.html[%E5%91%8A%E8%AF%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%9D%A5%E8%87%AA%E5%93%AA%E9%87%8C]" >http://localhost:8080/test/abc.html[告诉服务器来自哪里]</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</li>
+<li><p>User-Agent:Nozilla/4.0(Com…)[告诉服务器浏览器内核]</p>
+</li>
+<li><p>Cookie：[HTTP请求发送时，会把保存在该请求域名下的所有cookie值一起发送给web服务器。]</p>
+</li>
+<li><p>Connection:close/Keep-Alive [保持链接，发完数据后，不关闭链接]</p>
+</li>
+<li><p>Date:[浏览器发送数据的请求时间]</p>
+
+        <h6 id="请求方式"   >
+          <a href="#请求方式" class="heading-link"><i class="fas fa-link"></i></a><a href="#请求方式" class="headerlink" title="请求方式"></a>请求方式</h6>
+      </li>
+<li><p>get:获取资源</p>
+</li>
+<li><p>post:传输实体主体</p>
+</li>
+<li><p>put:传输文件</p>
+</li>
+<li><p>head:获取报文首部</p>
+</li>
+<li><p>delete: 删除文件</p>
+</li>
+<li><p>options: 询问支持的方法</p>
+</li>
+<li><p>trace: 追踪路径</p>
+
+        <h4 id="2-HTTP所有状态码的具体含义，看到异常状态码能快速定位问题"   >
+          <a href="#2-HTTP所有状态码的具体含义，看到异常状态码能快速定位问题" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-HTTP所有状态码的具体含义，看到异常状态码能快速定位问题" class="headerlink" title="2.HTTP所有状态码的具体含义，看到异常状态码能快速定位问题"></a>2.HTTP所有状态码的具体含义，看到异常状态码能快速定位问题</h4>
+      <div class="table-container"><table>
+<thead>
+<tr>
+<th></th>
+<th>类别</th>
+<th>原因短语</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1**</td>
+<td>信息性状态</td>
+<td>接收的请求正在处理</td>
+</tr>
+<tr>
+<td>2**</td>
+<td>成功状态码</td>
+<td>请求正常处理完毕</td>
+</tr>
+<tr>
+<td>3**</td>
+<td>重定向状态码</td>
+<td>需要进行附加操作以完成请求</td>
+</tr>
+<tr>
+<td>4**</td>
+<td>客户端错误状态码</td>
+<td>服务器无法处理请求</td>
+</tr>
+<tr>
+<td>5**</td>
+<td>服务器错误状态码</td>
+<td>服务器处理请求出错</td>
+</tr>
+</tbody></table></div>
+</li>
+<li><p>200 ok 请求成功</p>
+</li>
+<li><p>204 no content 请求成功没有资源返回</p>
+</li>
+<li><p>206 partial content 客户端请求只要一部分</p>
+</li>
+<li><p>301 永久性重定向 该状态码请求的资源被分配啦新的url</p>
+</li>
+<li><p>302 临时性重定向 该状态码表示请求的资源已被分配了新的url,希望用户能使用新的url访问</p>
+</li>
+<li><p>303 see other 表示请求对应的资源存在另外一个url,应使用get定向获取请求的资源</p>
+</li>
+<li><p>400 bad request 该状态码表示请求报文中存在语法错误</p>
+</li>
+<li><p>401 认证失败，登陆账户密码错误</p>
+</li>
+<li><p>403 请求被服务器拒绝 ，没有权限</p>
+</li>
+<li><p>404 找不到请求资源</p>
+</li>
+<li><p>500 服务器内部出现错误</p>
+</li>
+<li><p>503 服务器繁忙</p>
+</li>
+</ul>
+
+        <h4 id="3-HTTP1、HTTP1-1、HTTP2-0带来的改变"   >
+          <a href="#3-HTTP1、HTTP1-1、HTTP2-0带来的改变" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-HTTP1、HTTP1-1、HTTP2-0带来的改变" class="headerlink" title="3.HTTP1、HTTP1.1、HTTP2.0带来的改变"></a>3.HTTP1、HTTP1.1、HTTP2.0带来的改变</h4>
+      <ul>
+<li>HTTP1.0 无状态、无连接</li>
+<li>HTTP1.1</li>
+</ul>
+<ol>
+<li>持久连接</li>
+<li>请求管道化</li>
+<li>增加缓存处理（新的字段如cache-control）</li>
+<li>增加Host字段、支持断点传输等</li>
+</ol>
+<ul>
+<li>HTTP2.0</li>
+</ul>
+<ol>
+<li>二进制分帧</li>
+<li>多路复用（或连接共享）</li>
+<li>头部压缩</li>
+<li>服务器推送
+        <h4 id="4-HTTPS与HTTP的一些区别"   >
+          <a href="#4-HTTPS与HTTP的一些区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-HTTPS与HTTP的一些区别" class="headerlink" title="4. HTTPS与HTTP的一些区别"></a>4. HTTPS与HTTP的一些区别</h4>
+      </li>
+</ol>
+<ul>
+<li>http + 加密 + 认证 + 完整性保护 = https</li>
+<li>HTTPS协议需要到CA申请证书，一般免费证书很少，需要交费。</li>
+<li>HTTP协议运行在TCP之上，所有传输的内容都是明文，HTTPS运行在SSL/TLS之上，SSL/TLS运行在TCP之上，所有传输的内容都经过加密的。</li>
+<li>HTTP和HTTPS使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443。</li>
+<li>HTTPS可以有效的防止运营商劫持，解决了防劫持的一个大问题。
+        <h4 id="5-HTTPS的加密原理，如何开启HTTPS，如何劫持HTTPS请求"   >
+          <a href="#5-HTTPS的加密原理，如何开启HTTPS，如何劫持HTTPS请求" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-HTTPS的加密原理，如何开启HTTPS，如何劫持HTTPS请求" class="headerlink" title="5.HTTPS的加密原理，如何开启HTTPS，如何劫持HTTPS请求"></a>5.HTTPS的加密原理，如何开启HTTPS，如何劫持HTTPS请求</h4>
+      
+        <h4 id="HTTPS的加密原理"   >
+          <a href="#HTTPS的加密原理" class="heading-link"><i class="fas fa-link"></i></a><a href="#HTTPS的加密原理" class="headerlink" title="HTTPS的加密原理"></a>HTTPS的加密原理</h4>
+      
+        <h5 id="对称加密："   >
+          <a href="#对称加密：" class="heading-link"><i class="fas fa-link"></i></a><a href="#对称加密：" class="headerlink" title="对称加密："></a>对称加密：</h5>
+      </li>
+<li>对称密钥的问题主要在于：在第一次传输密钥时，这个密钥怎么让传输的双方知晓，同时不被别人知道。</li>
+<li>如果由服务器生成一个密钥并传输给浏览器，那这个传输过程中密钥被别人劫持弄到手了怎么办？之后他就能用密钥解开双方传输的任何内容了，所以这么做当然不行。
+        <h5 id="非对称加密："   >
+          <a href="#非对称加密：" class="heading-link"><i class="fas fa-link"></i></a><a href="#非对称加密：" class="headerlink" title="非对称加密："></a>非对称加密：</h5>
+      </li>
+<li>有两把密钥，通常一把叫做公钥、一把叫做私钥，用公钥加密的内容必须用私钥才能解开，同样，私钥加密的内容只有公钥能解开。</li>
+<li>服务器先把公钥直接明文传输给浏览器，之后浏览器向服务器传数据前都先用这个公钥加密好再传。</li>
+<li>而服务器则使用私钥加密传输，客户端通过公钥解密。</li>
+<li>问题：第一次明文传输公钥时，中间人可以拿到这个公钥，虽然此公钥不能解开由客户端加密传输的数据，但是服务端加密传输的数据，是不安全的。
+        <h6 id="非对称加密只能保证由浏览器向服务器传输数据时的安全性。"   >
+          <a href="#非对称加密只能保证由浏览器向服务器传输数据时的安全性。" class="heading-link"><i class="fas fa-link"></i></a><a href="#非对称加密只能保证由浏览器向服务器传输数据时的安全性。" class="headerlink" title="非对称加密只能保证由浏览器向服务器传输数据时的安全性。"></a>非对称加密只能保证由浏览器向服务器传输数据时的安全性。</h6>
+      
+        <h4 id="开启HTTPS"   >
+          <a href="#开启HTTPS" class="heading-link"><i class="fas fa-link"></i></a><a href="#开启HTTPS" class="headerlink" title="开启HTTPS"></a>开启HTTPS</h4>
+      </li>
+</ul>
+<ol>
+<li>服务器一台（可以购买阿里云轻量应用服务器，比较便宜）</li>
+<li>SSL证书 （可以注册阿里云免费证书，安全性较差）</li>
+<li>域名一个 （可以在万网上购买并要进行备案）</li>
+<li>本地打包好的项目（博主是使用springboot开发，所以打包好的是jar包而不是war包）<br>ftp客户端
+        <h4 id="劫持HTTPS请求"   >
+          <a href="#劫持HTTPS请求" class="heading-link"><i class="fas fa-link"></i></a><a href="#劫持HTTPS请求" class="headerlink" title="劫持HTTPS请求"></a>劫持HTTPS请求</h4>
+      跨域了，然后就说不一定是安全的，如果不对跨域做出限制的话，还有两种方法可以实现。更改端口号和域名。因为不对跨域做限制是可以发起CSRF(跨站请求伪造cross-site request forgery)的攻击的。</li>
+<li>黑客用自己的证书+自己的域名</li>
+<li>证书劫持+用自己的域名</li>
+<li>域名劫持+自己的证书</li>
+<li>DNS域名劫持+证书劫持</li>
+<li>域名入侵</li>
+<li>中间人证书欺骗攻击</li>
+<li>httpsStrip</li>
+</ol>
+
+        <h4 id="6-理解WebSocket协议的底层原理、与HTTP的区别"   >
+          <a href="#6-理解WebSocket协议的底层原理、与HTTP的区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-理解WebSocket协议的底层原理、与HTTP的区别" class="headerlink" title="6.理解WebSocket协议的底层原理、与HTTP的区别"></a>6.理解WebSocket协议的底层原理、与HTTP的区别</h4>
+      
+        <h6 id="Socket原理："   >
+          <a href="#Socket原理：" class="heading-link"><i class="fas fa-link"></i></a><a href="#Socket原理：" class="headerlink" title="Socket原理："></a>Socket原理：</h6>
+      <p>服务端有一个进程（或者多个进程）在指定端口等待客户来连接，服务程序等待客户的连接信息，一旦连接上之后，就可以按设计的数据交换方法和格式进行数据传输。客户端在需要的时刻发出向服务器端的连接请求。</p>
+
+        <h5 id="区别"   >
+          <a href="#区别" class="heading-link"><i class="fas fa-link"></i></a><a href="#区别" class="headerlink" title="区别"></a>区别</h5>
+      <ol>
+<li> socket是TCP/IP进程间通讯的底层实现api</li>
+<li>http(s)是在socket之上封装的一种上层通讯协议，其特点是：</li>
+</ol>
+<ul>
+<li> 服务端监听通讯，被动提供服务；客户端主动向服务端发起连接请求，建立起通讯。<br>每一次交互都是：客户端主动发起请求（request），服务端被动应答（response）。</li>
+<li>服务端不能主动向客户端推送数据。</li>
+<li>通信的数据是基于文本格式的。二进制数据（比如图片等）要利用base64等手段转换为文本后才能传输。</li>
+</ul>
+<ol start="3">
+<li>websocket也是在socket之上封装的一种上层通讯协议，其特点是：</li>
+</ol>
+<ul>
+<li> websocket通讯的建立阶段是依赖于http协议的。最初的握手阶段是http协议，握手完成后就切换到websocket协议，并完全与http协议脱离了。</li>
+<li>建立通讯时，也是由客户端主动发起连接请求，服务端被动监听。</li>
+<li>通讯一旦建立连接后，通讯就是“全双工”模式了。也就是说服务端和客户端都能在任何时间自由得发送数据，非常适合服务端要主动推送实时数据的业务场景。</li>
+<li>交互模式不再是“请求-应答”模式，完全由开发者自行设计通讯协议。</li>
+<li>通信的数据是基于“帧(frame)”的，可以传输文本数据，也可以直接传输二进制数据，效率高。当然，开发者也就要考虑封包、拆包、编号等技术细节。
+        <h4 id="7-HTTP的基本优化"   >
+          <a href="#7-HTTP的基本优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-HTTP的基本优化" class="headerlink" title="7. HTTP的基本优化"></a>7. HTTP的基本优化</h4>
+      </li>
+<li> 影响一个 HTTP 网络请求的因素主要有两个：带宽和延迟。</li>
+<li> 延迟：</li>
+</ul>
+<ol>
+<li>浏览器阻塞（HOL blocking）：浏览器会因为一些原因阻塞请求。浏览器对于同一个域名，同时只能有 4 个连接（这个根据浏览器内核不同可能会有所差异），超过浏览器最大连接数限制，后续请求就会被阻塞。</li>
+<li>DNS 查询（DNS Lookup）：浏览器需要知道目标服务器的 IP 才能建立连接。将域名解析为 IP 的这个系统就是 DNS。这个通常可以利用DNS缓存结果来达到减少这个时间的目的。</li>
+<li>建立连接（Initial connection）：HTTP 是基于 TCP 协议的，浏览器最快也要在第三次握手时才能捎带 HTTP 请求报文，达到真正的建立连接，但是这些连接无法复用会导致每次请求都经历三次握手和慢启动。三次握手在高延迟的场景下影响较明显，慢启动则对文件类大请求影响较大。</li>
+</ol>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://lovepink527.github.io">姜慧慧</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://lovepink527.github.io/2021/11/08/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-http/">https://lovepink527.github.io/2021/11/08/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-http/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://lovepink527.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2021/11/08/%E6%B5%8F%E8%A7%88%E5%99%A8api/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">浏览器api</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2021/10/21/react%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"><span class="paginator-prev__text">react原理解析</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-HTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E5%92%8C%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%E7%9A%84%E5%85%B7%E4%BD%93%E7%BB%84%E6%88%90%EF%BC%8C%E8%83%BD%E7%90%86%E8%A7%A3%E5%B8%B8%E8%A7%81%E8%AF%B7%E6%B1%82%E5%A4%B4%E7%9A%84%E5%90%AB%E4%B9%89%EF%BC%8C%E6%9C%89%E5%87%A0%E7%A7%8D%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F%EF%BC%8C%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">
+          1.HTTP请求报文和响应报文的具体组成，能理解常见请求头的含义，有几种请求方式，区别是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E7%BB%84%E6%88%90"><span class="toc-number">1.0.1.</span> <span class="toc-text">
+          具体组成</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-number">1.0.2.</span> <span class="toc-text">
+          常见请求头</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="toc-number">1.0.3.</span> <span class="toc-text">
+          请求方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-HTTP%E6%89%80%E6%9C%89%E7%8A%B6%E6%80%81%E7%A0%81%E7%9A%84%E5%85%B7%E4%BD%93%E5%90%AB%E4%B9%89%EF%BC%8C%E7%9C%8B%E5%88%B0%E5%BC%82%E5%B8%B8%E7%8A%B6%E6%80%81%E7%A0%81%E8%83%BD%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">
+          2.HTTP所有状态码的具体含义，看到异常状态码能快速定位问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-HTTP1%E3%80%81HTTP1-1%E3%80%81HTTP2-0%E5%B8%A6%E6%9D%A5%E7%9A%84%E6%94%B9%E5%8F%98"><span class="toc-number">3.</span> <span class="toc-text">
+          3.HTTP1、HTTP1.1、HTTP2.0带来的改变</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-HTTPS%E4%B8%8EHTTP%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8C%BA%E5%88%AB"><span class="toc-number">4.</span> <span class="toc-text">
+          4. HTTPS与HTTP的一些区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-HTTPS%E7%9A%84%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86%EF%BC%8C%E5%A6%82%E4%BD%95%E5%BC%80%E5%90%AFHTTPS%EF%BC%8C%E5%A6%82%E4%BD%95%E5%8A%AB%E6%8C%81HTTPS%E8%AF%B7%E6%B1%82"><span class="toc-number">5.</span> <span class="toc-text">
+          5.HTTPS的加密原理，如何开启HTTPS，如何劫持HTTPS请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTPS%E7%9A%84%E5%8A%A0%E5%AF%86%E5%8E%9F%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">
+          HTTPS的加密原理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%EF%BC%9A"><span class="toc-number">6.1.</span> <span class="toc-text">
+          对称加密：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%EF%BC%9A"><span class="toc-number">6.2.</span> <span class="toc-text">
+          非对称加密：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%8F%AA%E8%83%BD%E4%BF%9D%E8%AF%81%E7%94%B1%E6%B5%8F%E8%A7%88%E5%99%A8%E5%90%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE%E6%97%B6%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7%E3%80%82"><span class="toc-number">6.2.1.</span> <span class="toc-text">
+          非对称加密只能保证由浏览器向服务器传输数据时的安全性。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AFHTTPS"><span class="toc-number">7.</span> <span class="toc-text">
+          开启HTTPS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%AB%E6%8C%81HTTPS%E8%AF%B7%E6%B1%82"><span class="toc-number">8.</span> <span class="toc-text">
+          劫持HTTPS请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E7%90%86%E8%A7%A3WebSocket%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E3%80%81%E4%B8%8EHTTP%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">9.</span> <span class="toc-text">
+          6.理解WebSocket协议的底层原理、与HTTP的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Socket%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-number">9.0.1.</span> <span class="toc-text">
+          Socket原理：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-number">9.1.</span> <span class="toc-text">
+          区别</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-HTTP%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BC%98%E5%8C%96"><span class="toc-number">10.</span> <span class="toc-text">
+          7. HTTP的基本优化</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/avatar1.png" alt="avatar"></div><p class="sidebar-ov-author__text">前端知识学习笔记</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">47</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>姜慧慧</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

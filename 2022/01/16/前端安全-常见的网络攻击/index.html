@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="1. xss 攻击        跨站脚本攻击                    1.1 反射性攻击        url参数直接注入（地址栏运行脚本）                    1.2 影响         利用虚假输入表单骗取用户个人信息 利用脚本窃取用户的cookie值，被害者在不知情的情况下，帮助攻击者发送恶意请求  显示伪造的文章或图片">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端安全-常见的网络攻击">
+<meta property="og:url" content="https://lovepink527.github.io/2022/01/16/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/index.html">
+<meta property="og:site_name" content="lovepink">
+<meta property="og:description" content="1. xss 攻击        跨站脚本攻击                    1.1 反射性攻击        url参数直接注入（地址栏运行脚本）                    1.2 影响         利用虚假输入表单骗取用户个人信息 利用脚本窃取用户的cookie值，被害者在不知情的情况下，帮助攻击者发送恶意请求  显示伪造的文章或图片">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-16T02:15:35.000Z">
+<meta property="article:modified_time" content="2022-03-04T03:44:24.591Z">
+<meta property="article:author" content="姜慧慧">
+<meta property="article:tag" content="项目工程">
+<meta name="twitter:card" content="summary"><title>前端安全-常见的网络攻击 | lovepink</title><link ref="canonical" href="https://lovepink527.github.io/2022/01/16/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="lovepink" type="application/atom+xml">
+</head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-about"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">lovepink</div><div class="header-banner-info__subtitle">热爱可抵岁月漫长</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">前端安全-常见的网络攻击</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-01-16</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-03-04</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h3 id="1-xss-攻击"   >
+          <a href="#1-xss-攻击" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-xss-攻击" class="headerlink" title="1. xss 攻击"></a>1. xss 攻击</h3>
+      <ul>
+<li>跨站脚本攻击
+        <h4 id="1-1-反射性攻击"   >
+          <a href="#1-1-反射性攻击" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-1-反射性攻击" class="headerlink" title="1.1 反射性攻击"></a>1.1 <strong>反射性攻击</strong></h4>
+      </li>
+<li>url参数直接注入（地址栏运行脚本）
+        <h4 id="1-2-影响"   >
+          <a href="#1-2-影响" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-2-影响" class="headerlink" title="1.2 影响"></a>1.2 <strong>影响</strong></h4>
+      </li>
+<li> 利用虚假输入表单骗取用户个人信息</li>
+<li>利用脚本窃取用户的cookie值，被害者在不知情的情况下，帮助攻击者发送恶意请求</li>
+<li> 显示伪造的文章或图片<span id="more"></span>
+
+        <h4 id="1-3-存储型攻击"   >
+          <a href="#1-3-存储型攻击" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-3-存储型攻击" class="headerlink" title="1.3 存储型攻击"></a>1.3 <strong>存储型攻击</strong></h4>
+      </li>
+<li>存储到DB读取时注入</li>
+</ul>
+
+        <h4 id="1-4-防御"   >
+          <a href="#1-4-防御" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-4-防御" class="headerlink" title="1.4 防御"></a>1.4 <strong>防御</strong></h4>
+      <ul>
+<li>ctx.set（‘X-XSS-Protect’，‘0’）</li>
+<li>csp内容安全策略 ；白名单法：xss库，找到允许的代码；黑名单法：script和&lt;去掉，防御替换掉这些</li>
+<li>httpOnly cookie,将cookie信息设置为只读<br>response.addHeader(“set-Cookie”,”uid=112;path=/;HttpOnly”)</li>
+</ul>
+
+        <h3 id="2-csrf-攻击"   >
+          <a href="#2-csrf-攻击" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-csrf-攻击" class="headerlink" title="2. csrf 攻击"></a>2. csrf 攻击</h3>
+      <ul>
+<li>跨站请求伪造</li>
+<li>用户登录站点A,并再本地记录了cookie，用于被引入一个其他网站，其他网站拿去站点A的cookie,伪造请求
+        <h4 id="2-1-影响"   >
+          <a href="#2-1-影响" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-1-影响" class="headerlink" title="2.1 影响"></a>2.1 <strong>影响</strong></h4>
+      </li>
+<li>利用用户登录状态</li>
+<li>用户不知情</li>
+<li>完成业务请求</li>
+<li>盗取用户资金</li>
+<li>冒充用户发帖背锅</li>
+<li>损害网站声誉
+        <h4 id="2-2-防御"   >
+          <a href="#2-2-防御" class="heading-link"><i class="fas fa-link"></i></a><a href="#2-2-防御" class="headerlink" title="2.2 防御"></a>2.2 <strong>防御</strong></h4>
+      </li>
+<li>验证码</li>
+<li>cookie值进行hash</li>
+</ul>
+
+        <h3 id="3-点击劫持-clickjacking"   >
+          <a href="#3-点击劫持-clickjacking" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-点击劫持-clickjacking" class="headerlink" title="3. 点击劫持- clickjacking"></a>3. 点击劫持- clickjacking</h3>
+      <ul>
+<li>视觉欺骗的攻击手段，攻击者需要将攻击网站通过iframe进行嵌套自己的网站中，并把iframe设置为透明，在页面透出一个按钮引诱用户点击
+        <h4 id="3-1-防御"   >
+          <a href="#3-1-防御" class="heading-link"><i class="fas fa-link"></i></a><a href="#3-1-防御" class="headerlink" title="3.1 防御"></a>3.1 防御</h4>
+      </li>
+<li>X-FRAME_OPTIONS是一个http响应头，三个可选值，DENY不允许有iframe，SAMEORIGIN统一域名下可以用iframe，ALLOW-FROM页面指定来源的iframe中展示</li>
+<li>js方式：通过iframe方式加载页面时，直接不展示所有内容
+        <h3 id="4-SQL注入"   >
+          <a href="#4-SQL注入" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-SQL注入" class="headerlink" title="4. SQL注入"></a>4. SQL注入</h3>
+      </li>
+<li>‘1’ or ‘1’ = ‘1’</li>
+<li>网站可能会判断密码正确
+        <h4 id="4-1防御"   >
+          <a href="#4-1防御" class="heading-link"><i class="fas fa-link"></i></a><a href="#4-1防御" class="headerlink" title="4. 1防御"></a>4. 1防御</h4>
+      </li>
+<li>对参数进行转码</li>
+<li>用户提供最低权限</li>
+<li>限制变量类型</li>
+<li>数据库的特殊字符进行转义
+        <h3 id="5-OS命令"   >
+          <a href="#5-OS命令" class="heading-link"><i class="fas fa-link"></i></a><a href="#5-OS命令" class="headerlink" title="5. OS命令"></a>5. OS命令</h3>
+      </li>
+<li>掺入参数删除所有内容命令
+        <h3 id="6-请求劫持"   >
+          <a href="#6-请求劫持" class="heading-link"><i class="fas fa-link"></i></a><a href="#6-请求劫持" class="headerlink" title="6. 请求劫持"></a>6. 请求劫持</h3>
+      </li>
+<li>HTTP劫持：需要升级到HTTPS</li>
+<li>DNS劫持：修改DNS解析结果
+        <h3 id="7-DDOS"   >
+          <a href="#7-DDOS" class="heading-link"><i class="fas fa-link"></i></a><a href="#7-DDOS" class="headerlink" title="7. DDOS"></a>7. DDOS</h3>
+      </li>
+<li>SYN Flood: tcp握手，握手两次不予理会，多次握手</li>
+<li>HTTP flood：</li>
+<li>备份网站 、http请求拦截、带宽扩容</li>
+</ul>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://lovepink527.github.io">姜慧慧</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://lovepink527.github.io/2022/01/16/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/">https://lovepink527.github.io/2022/01/16/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://lovepink527.github.io/tags/%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B/">项目工程</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2022/01/16/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8-%E5%8A%A0%E5%AF%86/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">前端安全-加密</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2022/01/13/chrom%E6%8A%93%E5%8C%85%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA/"><span class="paginator-prev__text">chrom抓包安卓手机</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-xss-%E6%94%BB%E5%87%BB"><span class="toc-number">1.</span> <span class="toc-text">
+          1. xss 攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-%E5%8F%8D%E5%B0%84%E6%80%A7%E6%94%BB%E5%87%BB"><span class="toc-number">1.1.</span> <span class="toc-text">
+          1.1 反射性攻击</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-%E5%BD%B1%E5%93%8D"><span class="toc-number">1.2.</span> <span class="toc-text">
+          1.2 影响</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-%E5%AD%98%E5%82%A8%E5%9E%8B%E6%94%BB%E5%87%BB"><span class="toc-number">1.3.</span> <span class="toc-text">
+          1.3 存储型攻击</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-%E9%98%B2%E5%BE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">
+          1.4 防御</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-csrf-%E6%94%BB%E5%87%BB"><span class="toc-number">2.</span> <span class="toc-text">
+          2. csrf 攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E5%BD%B1%E5%93%8D"><span class="toc-number">2.1.</span> <span class="toc-text">
+          2.1 影响</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E9%98%B2%E5%BE%A1"><span class="toc-number">2.2.</span> <span class="toc-text">
+          2.2 防御</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81-clickjacking"><span class="toc-number">3.</span> <span class="toc-text">
+          3. 点击劫持- clickjacking</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E9%98%B2%E5%BE%A1"><span class="toc-number">3.1.</span> <span class="toc-text">
+          3.1 防御</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">4.</span> <span class="toc-text">
+          4. SQL注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1%E9%98%B2%E5%BE%A1"><span class="toc-number">4.1.</span> <span class="toc-text">
+          4. 1防御</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-OS%E5%91%BD%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">
+          5. OS命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E8%AF%B7%E6%B1%82%E5%8A%AB%E6%8C%81"><span class="toc-number">6.</span> <span class="toc-text">
+          6. 请求劫持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-DDOS"><span class="toc-number">7.</span> <span class="toc-text">
+          7. DDOS</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/avatar1.png" alt="avatar"></div><p class="sidebar-ov-author__text">前端知识学习笔记</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">47</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>姜慧慧</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

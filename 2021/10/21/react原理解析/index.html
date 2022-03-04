@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="setState()说明   setState()是异步更新调用  注意：使用该语法时，后面的setState()不要依赖于前面的setState()  可以多次调用setState(),只会触发一次重新渲染">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react原理解析">
+<meta property="og:url" content="https://lovepink527.github.io/2021/10/21/react%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="lovepink">
+<meta property="og:description" content="setState()说明   setState()是异步更新调用  注意：使用该语法时，后面的setState()不要依赖于前面的setState()  可以多次调用setState(),只会触发一次重新渲染">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-21T09:21:42.000Z">
+<meta property="article:modified_time" content="2022-03-04T02:27:12.174Z">
+<meta property="article:author" content="姜慧慧">
+<meta property="article:tag" content="REACT">
+<meta name="twitter:card" content="summary"><title>react原理解析 | lovepink</title><link ref="canonical" href="https://lovepink527.github.io/2021/10/21/react%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="lovepink" type="application/atom+xml">
+</head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-about"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">lovepink</div><div class="header-banner-info__subtitle">热爱可抵岁月漫长</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">react原理解析</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-10-21</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-03-04</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><ol>
+<li>setState()说明</li>
+</ol>
+<ul>
+<li><p>setState()是异步更新调用</p>
+</li>
+<li><p>注意：使用该语法时，后面的setState()不要依赖于前面的setState()</p>
+</li>
+<li><p>可以多次调用setState(),只会触发一次重新渲染</p>
+<span id="more"></span></li>
+<li><p>解决在一次setState()上修改值的情况</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.setState(<span class="function">(<span class="params">state,props</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="comment">//state最新的值</span></span><br><span class="line">        <span class="attr">count</span>: state.count + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></div></figure></li>
+<li><p>第二个参数</p>
+</li>
+<li><p>setState(upadater[,callback])</p>
+<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="built_in">this</span>.setState(<span class="function">(<span class="params">state,props</span>) =&gt;</span> &#123;&#125;,</span><br><span class="line">    <span class="comment">// 状态更新后并且重新渲染后，立即执行：</span></span><br><span class="line">    <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">document</span>.title = <span class="string">&#x27;更新state后的标题&#x27;</span> + <span class="built_in">this</span>.state.count</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+<ol start="2">
+<li>jsx语法的转化过程</li>
+</ol>
+<ul>
+<li>JSX仅仅是createElement()方法的语法糖(简化语法)</li>
+<li>JSX语法被@babel/preset-react插件编译为createElement()方法,最终变为react元素</li>
+</ul>
+<ol start="3">
+<li>组件更新机制</li>
+</ol>
+<ul>
+<li>setState()的两个作用：1.修改state2.更新组件</li>
+<li>父组件更新渲染，子组件也会更新渲染</li>
+</ul>
+<ol start="4">
+<li>组件性能优化</li>
+</ol>
+<p>1)减轻state</p>
+<ul>
+<li>减轻state:只存储跟组件渲染相关的数据</li>
+<li>注意： 不用做渲染的数据不要放到state中，比如定时器</li>
+<li>对于这种多个方法中用到的数据，应该放到this中</li>
+</ul>
+<ol start="2">
+<li>避免不必要的重新渲染</li>
+</ol>
+<ul>
+<li>使用钩子函数 shouldComponentUpadate(nextProps,nextState)</li>
+<li>作用： 使用返回值判断是否重新渲染，返回true表示重新渲染，false表示不渲染</li>
+<li>shouldComponentUpadate在更新前执行，在render之前<figure class="highlight javascript"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hello</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="title">shouldComponentUpdate</span>(<span class="params">nextProps,nextState</span>)</span> &#123;</span><br><span class="line">        <span class="comment">//根据条件判断是否重新渲染</span></span><br><span class="line">        <span class="keyword">if</span>(nextProps.number == nextState.number)&#123;</span><br><span class="line">            <span class="keyword">return</span> flase</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+<ol start="3">
+<li>存组件</li>
+</ol>
+<ul>
+<li>说明： 存组件内部的对比是shallow compare(浅层对比)</li>
+<li>对于引用类型，只比较对象的引用（地址）是否相同</li>
+<li>注意： state或props中属性值为引用类型时，应该创建新数据，不要直接修改源数据</li>
+</ul>
+<ol start="5">
+<li>虚拟DOM和Diff算法</li>
+</ol>
+<ul>
+<li><p>react更新思想： 只要state变化就重新渲染视图、</p>
+</li>
+<li><p>react做到的部分更新，虚拟dom和diff算法</p>
+</li>
+<li><p>虚拟dom: js对象，用来描述希望在屏幕上看到的内容（ui）</p>
+</li>
+<li><p>执行过程： </p>
+</li>
+<li><ol>
+<li>初次渲染时，react会根据初始state(Model),创建一个虚拟dom对象（树）</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>根据虚拟dom生成真正的dom，渲染到页面中</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>当数据变化后（setState()）,重新根据新的数据，创建新的虚拟dom对象（树）</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>与上一次得到的虚拟dom对象，使用Diff算法对比（找不同），得到需要更新的内容</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>最终，React只将变化的内容更新（patch）到Dom中，重新渲染到页面</li>
+</ol>
+</li>
+</ul>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://lovepink527.github.io">姜慧慧</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://lovepink527.github.io/2021/10/21/react%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">https://lovepink527.github.io/2021/10/21/react%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://lovepink527.github.io/tags/REACT/">REACT</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2021/11/08/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-http/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">网络协议-http</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2021/10/21/react%E8%B7%AF%E7%94%B1/"><span class="paginator-prev__text">react路由</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/avatar1.png" alt="avatar"></div><p class="sidebar-ov-author__text">前端知识学习笔记</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">47</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>姜慧慧</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

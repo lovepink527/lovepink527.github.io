@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="chorm抓包原因：        开发手机app等手机端项目，在手机端调试虽然有vconsole，但是想要把手机页面抓取到电脑上调试就很困难                      chorm抓包步骤：        手机打开设置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chrom抓包安卓手机">
+<meta property="og:url" content="https://lovepink527.github.io/2022/01/13/chrom%E6%8A%93%E5%8C%85%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA/index.html">
+<meta property="og:site_name" content="lovepink">
+<meta property="og:description" content="chorm抓包原因：        开发手机app等手机端项目，在手机端调试虽然有vconsole，但是想要把手机页面抓取到电脑上调试就很困难                      chorm抓包步骤：        手机打开设置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3ef99029c21a49ad8dcde3f983b1c792.png">
+<meta property="article:published_time" content="2022-01-13T06:27:50.000Z">
+<meta property="article:modified_time" content="2022-03-04T03:32:56.937Z">
+<meta property="article:author" content="姜慧慧">
+<meta property="article:tag" content="项目工程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/3ef99029c21a49ad8dcde3f983b1c792.png"><title>chrom抓包安卓手机 | lovepink</title><link ref="canonical" href="https://lovepink527.github.io/2022/01/13/chrom%E6%8A%93%E5%8C%85%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="lovepink" type="application/atom+xml">
+</head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-about"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">lovepink</div><div class="header-banner-info__subtitle">热爱可抵岁月漫长</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">chrom抓包安卓手机</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-01-13</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-03-04</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h4 id="chorm抓包原因："   >
+          <a href="#chorm抓包原因：" class="heading-link"><i class="fas fa-link"></i></a><a href="#chorm抓包原因：" class="headerlink" title="chorm抓包原因："></a>chorm抓包原因：</h4>
+      <ul>
+<li>开发手机app等手机端项目，在手机端调试虽然有vconsole，但是想要把手机页面抓取到电脑上调试就很困难</li>
+</ul>
+
+        <h4 id="chorm抓包步骤："   >
+          <a href="#chorm抓包步骤：" class="heading-link"><i class="fas fa-link"></i></a><a href="#chorm抓包步骤：" class="headerlink" title="chorm抓包步骤："></a>chorm抓包步骤：</h4>
+      <ol>
+<li>手机打开设置<span id="more"></span></li>
+<li>找到开发者选项（若没有可在‘其他设置’里找到，如果还没有找到，则需要在‘设置’中找到‘关于手机’，点击进去然后找到‘版本’，点击进去开启开发者模式，<strong>详细可看下面打开</strong>）</li>
+<li>打开开发者选项</li>
+<li>打开usb调试，传输文件模式</li>
+<li>在谷歌浏览器中输入‘chrome://inspect/’(谷歌需要插件，谷歌安装setupVPN插件，<strong>详细可看下面插件步骤</strong>)</li>
+<li>数据线链接电脑和手机</li>
+<li>手机访问页面可以在谷歌浏览器中看到</li>
+<li>点击‘inspect’按钮即可调试</li>
+</ol>
+
+        <h4 id="打开开发者模式步骤："   >
+          <a href="#打开开发者模式步骤：" class="heading-link"><i class="fas fa-link"></i></a><a href="#打开开发者模式步骤：" class="headerlink" title="打开开发者模式步骤："></a>打开开发者模式步骤：</h4>
+      <ul>
+<li>设置</li>
+<li>关于手机</li>
+<li>版本</li>
+<li>点击版本多次</li>
+</ul>
+
+        <h4 id="插件步骤："   >
+          <a href="#插件步骤：" class="heading-link"><i class="fas fa-link"></i></a><a href="#插件步骤：" class="headerlink" title="插件步骤："></a>插件步骤：</h4>
+      <ul>
+<li>下载谷歌插件setupVPN,放到c盘和d盘位置</li>
+<li>在谷歌-&gt;’更多工具’-&gt;‘扩展程序’中 </li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/3ef99029c21a49ad8dcde3f983b1c792.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>点击可上传扩展程序</li>
+<li>扩展程序登录</li>
+<li>随意选择地区</li>
+<li>即可</li>
+</ul>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://lovepink527.github.io">姜慧慧</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://lovepink527.github.io/2022/01/13/chrom%E6%8A%93%E5%8C%85%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA/">https://lovepink527.github.io/2022/01/13/chrom%E6%8A%93%E5%8C%85%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://lovepink527.github.io/tags/%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B/">项目工程</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2022/01/16/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8-%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">前端安全-常见的网络攻击</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2021/12/27/vue3%E5%88%9D%E4%BD%93%E9%AA%8C/"><span class="paginator-prev__text">vue3初体验</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#chorm%E6%8A%93%E5%8C%85%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">
+          chorm抓包原因：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chorm%E6%8A%93%E5%8C%85%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">
+          chorm抓包步骤：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%BC%80%E5%8F%91%E8%80%85%E6%A8%A1%E5%BC%8F%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">
+          打开开发者模式步骤：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E6%AD%A5%E9%AA%A4%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">
+          插件步骤：</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/avatar1.png" alt="avatar"></div><p class="sidebar-ov-author__text">前端知识学习笔记</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">47</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>姜慧慧</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>

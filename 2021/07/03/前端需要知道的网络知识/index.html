@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="​                     一、How does the internet work?       （网络是如何工作的？）  网络结构网络采用层次性的结构模型，将网络分成一层一层，每个层次负责不同的功能。每一个功能层中，通信双方都要共同遵守相应的约定，这种约定成为协议。这种协议组合在一起成为协议体系，他们负责保证传输的通畅。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端需要知道的网络知识">
+<meta property="og:url" content="https://lovepink527.github.io/2021/07/03/%E5%89%8D%E7%AB%AF%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="lovepink">
+<meta property="og:description" content="​                     一、How does the internet work?       （网络是如何工作的？）  网络结构网络采用层次性的结构模型，将网络分成一层一层，每个层次负责不同的功能。每一个功能层中，通信双方都要共同遵守相应的约定，这种约定成为协议。这种协议组合在一起成为协议体系，他们负责保证传输的通畅。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-03T06:53:00.000Z">
+<meta property="article:modified_time" content="2022-03-04T02:05:11.291Z">
+<meta property="article:author" content="姜慧慧">
+<meta property="article:tag" content="计算机基础">
+<meta name="twitter:card" content="summary"><title>前端需要知道的网络知识 | lovepink</title><link ref="canonical" href="https://lovepink527.github.io/2021/07/03/%E5%89%8D%E7%AB%AF%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="lovepink" type="application/atom+xml">
+</head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__icon"><i class="fas fa-about"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">lovepink</div><div class="header-banner-info__subtitle">热爱可抵岁月漫长</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">前端需要知道的网络知识</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-07-03</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-03-04</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>​</p>
+
+        <h2 id="一、How-does-the-internet-work"   >
+          <a href="#一、How-does-the-internet-work" class="heading-link"><i class="fas fa-link"></i></a><a href="#一、How-does-the-internet-work" class="headerlink" title="一、How does the internet work?"></a>一、How does the internet work?</h2>
+      <p>（网络是如何工作的？）</p>
+<ol>
+<li>网络结构<br>网络采用层次性的结构模型，将网络分成一层一层，每个层次负责不同的功能。<br>每一个功能层中，通信双方都要共同遵守相应的约定，这种约定成为协议。<br>这种协议组合在一起成为协议体系，他们负责保证传输的通畅。<span id="more"></span> </li>
+<li>计算机网络<br>由两台或两台以上的计算机通过网络设备连接起来所组成的一个系统<br>在这个系统中计算机与计算机之间可以进行数据通讯、数据共享及协同完成某些数据处理工作。</li>
+<li>因特网<br>实际上是将全国各地的局域网连接起来形成的一个网络之间的网络。
+        <h2 id="二、What-is-HTTP-什么是http？"   >
+          <a href="#二、What-is-HTTP-什么是http？" class="heading-link"><i class="fas fa-link"></i></a><a href="#二、What-is-HTTP-什么是http？" class="headerlink" title="二、What is HTTP?(什么是http？)"></a>二、What is HTTP?(什么是http？)</h2>
+      </li>
+</ol>
+<ul>
+<li>站在前端角度，HTTP对于我们而言就是一个异步获取数据的手段</li>
+<li>无论是html、css、js静态资源，还是api接口返回的动态数据，都是数据</li>
+<li>http本质是解决数据传输的问题</li>
+<li>http可以传输文本、图片、音频、视频。所以被定义为超文本传输协议</li>
+<li>不用http还可以用websocket，只是换了一种网络协议</li>
+<li>详情参考：图解http</li>
+</ul>
+
+        <h2 id="三、Browers-and-how-they-work-（浏览器是如何工作的？）"   >
+          <a href="#三、Browers-and-how-they-work-（浏览器是如何工作的？）" class="heading-link"><i class="fas fa-link"></i></a><a href="#三、Browers-and-how-they-work-（浏览器是如何工作的？）" class="headerlink" title="三、Browers and how they work?（浏览器是如何工作的？）"></a>三、Browers and how they work?（浏览器是如何工作的？）</h2>
+      <ul>
+<li>假设你在浏览器输入一个url,按下enter键之后会发生什么？</li>
+</ul>
+<p><strong>发送请求</strong></p>
+<ul>
+<li><p>首先浏览器会向服务器发送一个请求</p>
+</li>
+<li><p>我们以访问百度首页为例，在浏览器中输入百度的网址之后，浏览器会向百度的服务器发送一个请求</p>
+</li>
+<li><p>大家都知道，在网络中互相是不知道对方的，只能通过ip地址来识别，ip地址是由黑盒子封装的，我们并不知道，这也是为什么现在网络这么安全的原因</p>
+</li>
+<li><p>但是要访问百度服务器就必须知道百度服务器的ip地址，但是此时浏览器并不知道百度服务器的ip地址</p>
+</li>
+<li><p>浏览器只知道百度服务器的域名，其实域名就是ip地址，也不能这么说毕竟两者还是有区别的，这个时候肯定就需要一个服务器把域名转换成ip地址</p>
+</li>
+<li><p>这个工作正是由DNS服务器完成的，DNS服务器将百度服务器域名转换成ip地址，再返回给浏览器</p>
+</li>
+<li><p>这时浏览器再向百度发出请求，此时浏览器已经得到了百度服务器的ip地址，百度服务器会为根据浏览器要访问的页面返回相对应的页面</p>
+</li>
+</ul>
+<hr>
+<p><strong>接受请求</strong></p>
+<ul>
+<li><p>但是此时返回的只是html文档，其实就是字符串，更加艰苦的工作还等着浏览器呢</p>
+</li>
+<li><p>浏览器负责解析这些字符串，把里面的相对应的html,css js……..进行解析成html文档之后</p>
+</li>
+<li><p>这个html文档会加载到内存中，再进行具体的html，css，js…….等等的解析，他们都有不同的解析方式，浏览器可以很快的识别。</p>
+</li>
+<li><p>解析之后再进行相应样式的渲染，这个时候渲染引擎就充当了大哥</p>
+</li>
+<li><p>这个环节在我看来是最重要的，因为浏览器的渲染引擎直接导致了用户所看到的界面</p>
+</li>
+<li><p>当html文档加载到内容中时会根据html文档形成一个树，以后我们查找元素的时候都是要靠这颗树的，这颗树发挥的作用是非常</p>
+</li>
+<li><p>可以说是浏览器能够正常工作，快速的定位内容，都是这颗树的功劳</p>
+</li>
+<li><p>这些工作全部做完之后浏览器才会呈现给用户界面，也就是我们平时看到的内容</p>
+</li>
+</ul>
+
+        <h2 id="四、DNS-and-how-it-works？（DNS是如何工作的？）"   >
+          <a href="#四、DNS-and-how-it-works？（DNS是如何工作的？）" class="heading-link"><i class="fas fa-link"></i></a><a href="#四、DNS-and-how-it-works？（DNS是如何工作的？）" class="headerlink" title="四、DNS and how it works？（DNS是如何工作的？）"></a>四、DNS and how it works？（DNS是如何工作的？）</h2>
+      <ul>
+<li><p>DNS是一个数据匹配的名称目录</p>
+</li>
+<li><p>比如我们打电话都用手机号都是数字，后台我们给每一个手机号一个唯一的名字，我们一输入小明就可以找到小明并给小明打电话</p>
+</li>
+<li><p>浏览器也一样，我们之前访问网页需要输入ip地址都是数字不好记住，后来有了域名解析DNS，我们输入域名就可以获取对用ip地址的网页<br>工作原理</p>
+</li>
+<li><p>将名称与数字匹配的DNS目录并非集中位于互联网某一个地方。</p>
+</li>
+<li><p>与互联网本身一样，该目录分布在世界各地，存储在域名服务器上，这些域名服务器定期相互通信以提供更新</p>
+</li>
+<li><p>每个指定的站点可以对应多个IP地址。实际上，一些站点具有数百个或更多与单个域名对应的IP地址。</p>
+</li>
+<li><p>例如您的计算机访问<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.google.com的服务器可能与其他国家/%E5%9C%B0%E5%8C%BA%E7%9A%84%E7%94%A8%E6%88%B7%E9%80%9A%E8%BF%87%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E9%94%AE%E5%85%A5%E7%9B%B8%E5%90%8C%E7%9A%84%E7%AB%99%E7%82%B9%E5%90%8D%E7%A7%B0%E8%80%8C%E8%BE%BE%E5%88%B0%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%8C%E5%85%A8%E4%B8%8D%E5%90%8C%E3%80%82" >www.google.com的服务器可能与其他国家/地区的用户通过在浏览器中键入相同的站点名称而达到的服务器完全不同。</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</li>
+<li><p>目录的分布式特性的另一个原因是当您查找站点时，如果目录只有一个位置，在数百万，可能是数十亿人之间共享，您需要花费大量时间来获取响应信息。</p>
+</li>
+<li><p>相反，DNS信息在许多服务器之间共享，但也在客户端计算机上本地缓存。您可能每天都会多次使用google.com。而不是您的计算机每次都在查询DNS名称服务器以获取google.com的IP地址，而是将该信息保存在您的计算机上，这样就无需访问DNS服务器来解析名称及其IP地址。</p>
+</li>
+</ul>
+
+        <h2 id="五、What-is-Domain-Name-（什么是域名？）"   >
+          <a href="#五、What-is-Domain-Name-（什么是域名？）" class="heading-link"><i class="fas fa-link"></i></a><a href="#五、What-is-Domain-Name-（什么是域名？）" class="headerlink" title="五、What is Domain Name?（什么是域名？）"></a>五、What is Domain Name?（什么是域名？）</h2>
+      <p><strong>域名</strong></p>
+<ul>
+<li>打开一个浏览器，在地址内输入你要访问的网址,下图红色的框框为地址栏，<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.baidu.com网址/" >http://www.baidu.com网址</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></li>
+<li>有的时候，你会看到这样的<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.baidu.com,访问是基于http协议的,所以http//%E5%8F%AF%E4%BB%A5%E7%9C%81%E7%95%A5%EF%BC%8C%E5%90%8E%E9%9D%A2%E7%9A%84www.jiaoxueseo.com%E4%B8%BA%E5%9F%9F%E5%90%8D" >http://www.baidu.com，访问是基于http协议的，所以http://可以省略，后面的www.jiaoxueseo.com为域名</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></li>
+<li>域名的组成</li>
+</ul>
+<p><strong>域名是由主体和后缀组成的</strong></p>
+<ul>
+<li><p>网址<a href="http://www.baidu.com由三部分组成：http://www协议、baidu主体、.com后缀">http://www.baidu.com由三部分组成：http://www协议、baidu主体、.com后缀</a></p>
+</li>
+<li><p>www万维网 http子协议</p>
+</li>
+<li><p>域名的后缀</p>
+</li>
+<li><p>国际通用域名 .com .org .net .gov .edu .com为商业 .org非盈利组织，</p>
+</li>
+<li><p>.net 为it，.gov为政府，.edu为教育政府的教育的个人或企业没有办法注册，专用的</p>
+</li>
+<li><p><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://com.cn/" >http://com.cn</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 中国国家的域名，不同国家的后缀也不一样 .us为美国，.tw台湾</p>
+</li>
+</ul>
+<p><strong>域名级别</strong></p>
+<ul>
+<li>baudu.com 顶级域名，也就是一级域名，但我们不说一级域名，而说顶级域名</li>
+<li><span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="http://www.baidu.com/" >www.baidu.com</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span> 前面加www 这个是一个二级域名</li>
+<li>在顶级域名上进行解析，可以得到无数个二级域名,二级域名前不需要加www，也不需要解析带www的，初学者要注意
+        <h2 id="六、what-is-hosting？（什么是托管？）"   >
+          <a href="#六、what-is-hosting？（什么是托管？）" class="heading-link"><i class="fas fa-link"></i></a><a href="#六、what-is-hosting？（什么是托管？）" class="headerlink" title="六、what is hosting？（什么是托管？）"></a>六、what is hosting？（什么是托管？）</h2>
+      </li>
+<li>它是一种提供基础设施的服务，允许企业发布网站，网站托管通常定期收取费用，为企业提供域名</li>
+<li>网站页面存储和允许通过Internet和web浏览器运行一般访问的服务器。</li>
+<li>web托管一般分为4类:1.共享虚拟主机:2.专用服务器:3.云主机(VPS):4.网站托管:</li>
+</ul>
+<p>​</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://lovepink527.github.io">姜慧慧</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://lovepink527.github.io/2021/07/03/%E5%89%8D%E7%AB%AF%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/">https://lovepink527.github.io/2021/07/03/%E5%89%8D%E7%AB%AF%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://lovepink527.github.io/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">计算机基础</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2021/07/06/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE-tcp-ip/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">网络协议-tcp/ip</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2021/07/03/JavaScript%E5%9F%BA%E7%A1%80-%E5%8F%98%E9%87%8F%E4%B8%8E%E7%B1%BB%E5%9E%8B/"><span class="paginator-prev__text">变量与类型</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81How-does-the-internet-work"><span class="toc-number">1.</span> <span class="toc-text">
+          一、How does the internet work?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81What-is-HTTP-%E4%BB%80%E4%B9%88%E6%98%AFhttp%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">
+          二、What is HTTP?(什么是http？)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Browers-and-how-they-work-%EF%BC%88%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%EF%BC%9F%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">
+          三、Browers and how they work?（浏览器是如何工作的？）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81DNS-and-how-it-works%EF%BC%9F%EF%BC%88DNS%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84%EF%BC%9F%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">
+          四、DNS and how it works？（DNS是如何工作的？）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81What-is-Domain-Name-%EF%BC%88%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%9F%E5%90%8D%EF%BC%9F%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">
+          五、What is Domain Name?（什么是域名？）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81what-is-hosting%EF%BC%9F%EF%BC%88%E4%BB%80%E4%B9%88%E6%98%AF%E6%89%98%E7%AE%A1%EF%BC%9F%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">
+          六、what is hosting？（什么是托管？）</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/avatar1.png" alt="avatar"></div><p class="sidebar-ov-author__text">前端知识学习笔记</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">47</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>姜慧慧</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>
